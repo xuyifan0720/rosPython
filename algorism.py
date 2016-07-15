@@ -31,7 +31,8 @@ class racecar:
 
 	def bbWallFollow(self, ranges, d_desired, speed, side):
 
-		distance = calcDistance(ranges, side)   # Queries for distance estimate
+	#	distance = calcDistance(ranges, side)   # Queries for distance estimate
+		distance = min(ranges)
 		error = d_desired - distance    # Calculates error
 		steering_angle = 0              # Initializes steering_angle
 
@@ -71,7 +72,7 @@ class racecar:
 		Kp = 0.5
 		Kd = 0.2
 		steering_angle = Kp * error - Kd * errorDif
-		errorDif = error
+		errorDif = error - errorDif
         
 		if abs(error) < THRESHOLD:      # If error within threshold:
 			steering_angle = 0          #       Kill steering
